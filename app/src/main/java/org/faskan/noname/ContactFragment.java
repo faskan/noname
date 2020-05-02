@@ -31,6 +31,8 @@ import retrofit2.Response;
 public class ContactFragment extends Fragment {
 
     private OnListFragmentInteractionListener mListener;
+    private MyContactRecyclerViewAdapter myContactRecyclerViewAdapter;
+    private GetContactsService service;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,13 +44,25 @@ public class ContactFragment extends Fragment {
                              Bundle savedInstanceState) {
         final RecyclerView view = (RecyclerView) inflater.inflate(R.layout.fragment_contact_list, container, false);
         view.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        service = RetrofitClientInstance.getRetrofitInstance().create(GetContactsService.class);
 
-        GetContactsService service = RetrofitClientInstance.getRetrofitInstance().create(GetContactsService.class);
+        fetchDataAndPopulateView(view);
+
+        view.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            if (scrollY == 0 && oldScrollY == 1) {
+                fetchDataAndPopulateView(view);
+            }
+        });
+        return view;
+    }
+
+    private void fetchDataAndPopulateView(RecyclerView view) {
         Call<List<Contact>> call = service.getAllContacts();
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                view.setAdapter(new MyContactRecyclerViewAdapter(response.body(), mListener));
+                myContactRecyclerViewAdapter = new MyContactRecyclerViewAdapter(response.body(), mListener);
+                view.setAdapter(myContactRecyclerViewAdapter);
             }
 
             @Override
@@ -56,9 +70,6 @@ public class ContactFragment extends Fragment {
                 Toast.makeText(view.getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        return view;
     }
 
 
