@@ -48,11 +48,7 @@ public class ContactFragment extends Fragment {
 
         fetchDataAndPopulateView(view);
 
-        view.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            if (scrollY == 0 && oldScrollY == 1) {
-                fetchDataAndPopulateView(view);
-            }
-        });
+        view.setOnScrollChangeListener(new ContactsScrollChangeListener(() -> fetchDataAndPopulateView(view)));
         return view;
     }
 
