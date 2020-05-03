@@ -1,10 +1,13 @@
-package org.faskan.noname;
+package org.faskan.noname.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.faskan.noname.contact.Contact;
+import org.faskan.noname.R;
+import org.faskan.noname.contact.ContactActivity;
+import org.faskan.noname.model.Contact;
 
 public class MainActivity extends AppCompatActivity implements ContactFragment.OnListFragmentInteractionListener {
 
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements ContactFragment.O
 
     @Override
     public void onListFragmentInteraction(Contact contact) {
-
+        Intent intent = new Intent(this, ContactActivity.class);
+        intent.putExtra("contact", contact);
+        startActivity(intent);
     }
 }

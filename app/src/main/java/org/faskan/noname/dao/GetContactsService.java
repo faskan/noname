@@ -1,6 +1,6 @@
 package org.faskan.noname.dao;
 
-import org.faskan.noname.contact.Contact;
+import org.faskan.noname.model.Contact;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package org.faskan.noname;
+package org.faskan.noname.main;
 
 import android.view.View;
 
@@ -13,9 +13,9 @@ public class ContactsScrollChangeListener implements RecyclerView.OnScrollChange
 
     @Override
     public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-        System.out.println(" ***** scrollY : " + scrollY + " *** oldScrollY : " + oldScrollY);
-        if (scrollY == 0 && oldScrollY == 1) {
-            onLoadMoreListener.loadMore();
-        }
+//        System.out.println(" ***** scrollY : " + scrollY + " *** oldScrollY : " + oldScrollY);
+//        if (scrollY == 0 && oldScrollY == 1) {
+//            onLoadMoreListener.loadMore();
+//        }
     }
 }

@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_container"
-    tools:context=".main.MainActivity">
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_contact_list"
-        android:name="org.faskan.noname.main.ContactFragment"
-        />
+    tools:context=".contact.ContactActivity">
+
 </androidx.constraintlayout.widget.ConstraintLayout>

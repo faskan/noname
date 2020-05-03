@@ -1,4 +1,4 @@
-package org.faskan.noname;
+package org.faskan.noname.main;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,23 +7,27 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.faskan.noname.ContactFragment.OnListFragmentInteractionListener;
-import org.faskan.noname.contact.Contact;
+import org.faskan.noname.R;
+import org.faskan.noname.main.ContactFragment.OnListFragmentInteractionListener;
+import org.faskan.noname.model.Contact;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Contact} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-@RequiredArgsConstructor
+@AllArgsConstructor
+@Setter
 public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Contact> contacts;
-    private final OnListFragmentInteractionListener mListener;
+    private List<Contact> contacts;
+    private OnListFragmentInteractionListener mListener;
 
 
     @Override
